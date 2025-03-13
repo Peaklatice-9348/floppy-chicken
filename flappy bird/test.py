@@ -7,19 +7,9 @@ clock = pygame.time.Clock()
 
 WIDTH = 864
 HEIGHT = 936
-#loading highscore
-def load_highscore():
-    try:
-        with open('highscore.txt','r')as file:
-            return int(file.read())
-    except:
-        return 0
 
-def save_highscore(highscore):
-    with open('highscore.txt','a')as file:
-        file.write(str(highscore))
 #variables
-highscore = load_highscore()
+highscore = 0
 game_over = False
 made_button = False
 pipe_gap = 200
@@ -163,7 +153,6 @@ while running:
 
     if highscore < score:
         highscore = score
-        save_highscore(highscore)
 
     if game_over == True:
         if made_button == False:
