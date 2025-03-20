@@ -8,11 +8,11 @@ clock = pygame.time.Clock()
 
 WIDTH = 864
 HEIGHT = 936
-highscore_path = os.path.join('flappy bird','highscore.txt')
+highscore_path = os.path.join('flappy bird','kirbyscore.txt')
 #loading highscore
 def load_highscore():
     try:
-        with open('highscore.txt','r')as file:
+        with open('kirbyscore.txt','r')as file:
             return int(file.read().strip())
     except(FileNotFoundError,ValueError):
         return 0
@@ -20,15 +20,15 @@ def load_highscore():
 def save_highscore(highscore):
     current_highscore =  load_highscore()
     if score > current_highscore:
-        with open('highscore.txt','w')as file:
+        with open('kirbyscore.txt','w')as file:
             file.write(str(score))
 
 #variables
 highscore = load_highscore()
 game_over = False
 made_button = False
-pipe_gap = 200
-pipe_frequency = 1000
+pipe_gap = 300
+pipe_frequency = 1500
 last_pipe = pygame.time.get_ticks()-pipe_frequency
 flying = False
 ground_scroll = 0
@@ -63,7 +63,7 @@ class Chicken(pygame.sprite.Sprite):
         self.index = 0
         self.v = 0
         self.clicked = False
-        self.max_v = 20
+        self.max_v = 15
         self.counter = 0
         for num in range (1,5):
             img = pygame.image.load(f'images/bird{num}.png')
@@ -86,7 +86,7 @@ class Chicken(pygame.sprite.Sprite):
                 self.clicked == False            
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False and self.rect.top > 0:
                     self.clicked == True
-                    self.v = -7
+                    self.v = -8
 
             self.counter += 1
             flap = 10
